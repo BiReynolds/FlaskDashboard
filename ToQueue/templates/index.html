@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Today's Queue</h1>
+    {% for todo in todos %}
+        <div><p><a href="{{ url_for('task',task_id=todo.id) }}">{{ todo.title }}</a></p></div>
+    {% else %}
+        <p>Nothing To Do!</p>
+    {% endfor %}
+{% endblock %}
