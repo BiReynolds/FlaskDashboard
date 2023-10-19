@@ -8,7 +8,6 @@ class TodoForm(FlaskForm):
     title = StringField('Title', validators = [DataRequired()])
     priority = IntegerField('Priority (1-5)',default = 1)
     effort = IntegerField('Effort (1-5)', default = 1)
-    duedate = DateField('Due Date (if applicable)',default = date.today()+timedelta(weeks = 52))
+    duedate = DateField('Due Date (if applicable)', default = date.today()+timedelta(weeks = 52))
     submit = SubmitField('Add Task')
 
-    

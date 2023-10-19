@@ -7,5 +7,6 @@
     <p>Due Date: {{ task.duedate }}</p>
     <form action="" method="post" novalidate>
         <input type="submit" method="POST" value="Delete">
+        <a href="{{ url_for('editTask',task_id=task.id) }}">Edit</a>
     </form>
 {% endblock %}

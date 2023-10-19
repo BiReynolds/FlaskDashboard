@@ -18,6 +18,11 @@
         </ul>
         {% endif %}
         {% endwith %}
+        {% if header %}
+        <h1>{{ header }}</h1>
+        {% else %}
+        <h1>Dashboard</h1>
+        {% endif %}
         {% block content %}{% endblock %}
     </body>
 </html>

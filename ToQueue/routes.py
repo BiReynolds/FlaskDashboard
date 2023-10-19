@@ -21,7 +21,7 @@ def addTask():
         db.session.commit()
         flash('New Task Added: {}'.format(form.title.data))
         return redirect(url_for('index'))
-    return render_template('addTask.html', form = form)
+    return render_template('addTask.html', form = form, header = "New Task")
 
 @app.route('/task/<task_id>', methods = ['GET','POST'])
 def task(task_id):
@@ -33,3 +33,17 @@ def task(task_id):
         flash('Task Deleted from Database: {}'.format(task.title))
         return redirect(url_for('index'))
     return render_template('task.html',task=task)
+
+@app.route('/task/<task_id>/edit',methods = ['GET','POST'])
+def editTask(task_id):
+    task = Task.query.filter_by(id=task_id).first_or_404()
+    form = TodoForm(title=task.title,priority=task.priority,effort=task.effort,duedate=task.duedate)
+    if form.validate_on_submit():
+        task.title=form.title.data
+        task.priority=form.priority.data
+        task.effort=form.effort.data
+        task.duedate=form.duedate.data
+        db.session.commit()
+        flash('Task Edited: {}'.format(task.title))
+        return redirect(url_for('task',task_id=task_id))
+    return render_template('addTask.html',header="Edit Task", form=form)
