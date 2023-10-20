@@ -1,4 +1,4 @@
 /*.cmake
 /*.DS_Store
 /.user
-__pycache__
+*/__pycache__
